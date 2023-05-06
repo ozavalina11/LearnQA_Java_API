@@ -45,4 +45,28 @@ public class Homework {
         String locationHeader = response.getHeader("Location");
         System.out.println(locationHeader);
     }
+
+    @Test
+    public void testEx7() {
+        int statusCode = 0;
+        String url = "https://playground.learnqa.ru/api/long_redirect";
+        do {
+            Response response = RestAssured
+                    .given()
+                    .redirects()
+                    .follow(false)
+                    .when()
+                    .get(url)
+                    .andReturn();
+            statusCode = response.getStatusCode();
+            if (statusCode != 200) {
+                url = response.getHeader("Location");
+                System.out.println(url);
+                System.out.println("Код статуса " + statusCode);
+            } else {
+                System.out.println("Дошли до ответа с кодом статуса " + statusCode);
+            }
+        }
+        while (statusCode == 301);
+    }
 }
