@@ -50,6 +50,7 @@ public class Homework {
     public void testEx7() {
         int statusCode = 0;
         String url = "https://playground.learnqa.ru/api/long_redirect";
+        int counter = 0;
         do {
             Response response = RestAssured
                     .given()
@@ -63,8 +64,10 @@ public class Homework {
                 url = response.getHeader("Location");
                 System.out.println(url);
                 System.out.println("Код статуса " + statusCode);
+                counter++;
             } else {
                 System.out.println("Дошли до ответа с кодом статуса " + statusCode);
+                System.out.println("Количество редиректов: " + counter);
             }
         }
         while (statusCode == 301);
