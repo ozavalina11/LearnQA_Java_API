@@ -31,4 +31,18 @@ public class Homework {
             System.out.println(message);
         }
     }
+
+    @Test
+    public void testEx6() {
+        Response response = RestAssured
+                .given()
+                .redirects()
+                .follow(false)
+                .when()
+                .get("https://playground.learnqa.ru/api/long_redirect")
+                .andReturn();
+
+        String locationHeader = response.getHeader("Location");
+        System.out.println(locationHeader);
+    }
 }
