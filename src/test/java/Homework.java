@@ -126,4 +126,40 @@ public class Homework {
             } else System.out.println(status);
         } else System.out.println("No job linked to this token");
     }
+
+    @Test
+    public void testEx9() {
+        String[] passwords = new String[]{"password", "123456", "123456789", "12345678", "12345", "123456789", "qwerty", "abc123", "football", "1234567", "monkey", "111111", "letmein", "1234", "1234567890", "dragon", "baseball", "sunshine", "iloveyou", "trustno1", "princess", "adobe123[a]", "123123", "welcome", "login", "admin", "qwerty123", "solo", "1q2w3e4r", "master", "666666", "photoshop[a]", "1qaz2wsx", "qwertyuiop", "ashley", "mustang", "121212", "starwars", "654321", "bailey", "access", "flower", "555555", "passw0rd", "shadow", "lovely", "7777777", "michael", "!@#$%^&*", "jesus", "password1", "superman", "hello", "charlie", "888888", "696969", "qwertyuiop", "hottie", "freedom", "aa123456", "qazwsx", "ninja", "azerty", "loveme", "whatever", "donald", "batman", "zaq1zaq1", "qazwsx", "Football", "000000", "123qwe"};
+        Map<String, String> date = new HashMap<>();
+        date.put("login", "super_admin");
+        for (int i = 0; i < passwords.length; i++) {
+            date.put("password", passwords[i]);
+
+            Response response = RestAssured
+                    .given()
+                    .body(date)
+                    .post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework")
+                    .andReturn();
+
+            String responseCookie = response.getCookie("auth_cookie");
+
+            // передаем куки
+            Map<String, String> cookies = new HashMap<>();
+            if (responseCookie != null) {
+                cookies.put("auth_cookie", responseCookie);
+            }
+
+            Response responseForCheck = RestAssured
+                    .given()
+                    .cookies(cookies)
+                    .post("https://playground.learnqa.ru/ajax/api/check_auth_cookie")
+                    .andReturn();
+
+            if (!responseForCheck.asString().equals("You are NOT authorized")) {
+                responseForCheck.print();
+                System.out.println("Пароль: " + passwords[i]);
+                break;
+            }
+        }
+    }
 }
