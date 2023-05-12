@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.lang.Thread.sleep;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Homework {
@@ -169,5 +170,16 @@ public class Homework {
         //String str = "q w ert yu i op"; // 15 или менее символов
         String str = "q w ert yu i op ";
         assertTrue(str.length() > 15, "Текст содержит 15 или менее символов");
+    }
+
+    @Test
+    public void testEx11() {
+        Response response = RestAssured
+                .get("https://playground.learnqa.ru/api/homework_cookie")
+                .andReturn();
+
+        Map<String, String> cookies = response.getCookies();
+        assertTrue(cookies.containsKey("HomeWork"), "Response doesn't have 'HomeWork' cookie");
+        assertEquals("hw_value", response.getCookie("HomeWork"), "Incorrect cookie");
     }
 }
