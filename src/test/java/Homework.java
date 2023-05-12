@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.lang.Thread.sleep;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Homework {
 
@@ -161,5 +162,12 @@ public class Homework {
                 break;
             }
         }
+    }
+
+    @Test
+    public void testEx10() {
+        //String str = "q w ert yu i op"; // 15 или менее символов
+        String str = "q w ert yu i op ";
+        assertTrue(str.length() > 15, "Текст содержит 15 или менее символов");
     }
 }
