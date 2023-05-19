@@ -52,7 +52,7 @@ public class UserGetTest extends BaseTestCase {
     }
 
     @Test
-    public void testGetUserDetailsAuthAsAnotherUser() {
+    public void testGetUserDetailsAuthAsAnotherUser_Ex16() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
         authData.put("password", "1234");
