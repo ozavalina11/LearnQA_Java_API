@@ -21,6 +21,15 @@ public class DataGenerator {
         return data;
     }
 
+    public static Map<String, String> getEditData() {
+        Map<String, String> data = new HashMap<>();
+        data.put("username", "learnqa2");
+        data.put("firstName", "learnqa2");
+        data.put("lastName", "learnqa2");
+
+        return data;
+    }
+
     public static Map<String, String> getRegistrationData(Map<String, String> nonDefaultValues) {
         Map<String, String> defaultValues = DataGenerator.getRegistrationData();
 
