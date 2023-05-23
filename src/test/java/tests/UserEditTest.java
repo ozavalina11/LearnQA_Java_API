@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -15,7 +16,8 @@ import java.util.Map;
 public class UserEditTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
-    @Epic("Негативные тесты на PUT")
+    @Epic("LearnQA API")
+    @Feature("Тесты на PUT")
     @Test
     @DisplayName("Попытка изменения данных пользователя, будучи неавторизованным")
     public void Ex17TestEditDataByUnauthorizedUser() {

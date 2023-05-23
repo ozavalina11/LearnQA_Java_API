@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -14,7 +15,8 @@ import java.util.Map;
 public class UserDeleteTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
-    @Epic("Тесты на DELETE")
+    @Epic("LearnQA API")
+    @Feature("Тесты на DELETE")
     @Test
     @DisplayName("Попытка удаления пользователя по ID 2")
     public void Ex18deleteUserWithId2() {
