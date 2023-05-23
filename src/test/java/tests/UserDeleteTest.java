@@ -1,9 +1,11 @@
 package tests;
 
+import io.qameta.allure.Epic;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -12,7 +14,9 @@ import java.util.Map;
 public class UserDeleteTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
+    @Epic("Тесты на DELETE")
     @Test
+    @DisplayName("Попытка удаления пользователя по ID 2")
     public void Ex18deleteUserWithId2() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
@@ -31,6 +35,7 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Удаление пользователя с проверкой")
     public void Ex18deleteUser() {
         //{"id":"71275"} delete5@example.com
         Map<String, String> authData = new HashMap<>();
@@ -55,6 +60,7 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Попытка удаления пользователя из-под другого пользователя")
     public void Ex18deleteUserByAnotherUser() {
         //{"id":"71286"} delete10@example.com
         //{"id":"71293"} delete11@example.com

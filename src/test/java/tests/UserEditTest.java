@@ -1,10 +1,12 @@
 package tests;
 
+import io.qameta.allure.Epic;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -13,7 +15,9 @@ import java.util.Map;
 public class UserEditTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
+    @Epic("Негативные тесты на PUT")
     @Test
+    @DisplayName("Попытка изменения данных пользователя, будучи неавторизованным")
     public void Ex17TestEditDataByUnauthorizedUser() {
         //{"id":"71080"} unauthorized@example.com
         Response responseEditData = apiCoreRequests
@@ -23,6 +27,7 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Попытка изменить данные пользователя, будучи авторизованными другим пользователем")
     public void Ex17TestEditDataByAnotherAuthorizedUser() {
         //{"id":"71244"} editUserByAnotherUser@example.com
         Map<String, String> authData = new HashMap<>();
@@ -49,6 +54,7 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Попытка изменения email пользователя на новый email без символа @")
     public void Ex17TestEditIncorrectEmail() {
         //{"id":"71245"}  editUserByAnother@example.com
         Map<String, String> authData = new HashMap<>();
@@ -71,6 +77,7 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Попытка изменения firstName пользователя на очень короткое значение в один символ")
     public void Ex17TestEditFirstName() {
         //{"id":"71245"}  editUserByAnother@example.com
         Map<String, String> authData = new HashMap<>();
@@ -93,6 +100,7 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Позитивный тест для самопроверки")
     public void Ex17_positiveForCheck() {
 
         Map<String, String> authData = new HashMap<>();
